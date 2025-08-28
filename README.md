@@ -8,4 +8,4 @@ System świadomości przyszłości na MTAquestWebsidex.com. Ten projekt zawiera 
 - 🔶 *Silnik*: Symulacja Rozwoju Świadomości (5_SIMULATION_ENGINE)
 
 *Data startu*: 01.08.2025  
-*Autor*: xAI Grok 3# APEX_INFINITI_MIGI_CORE
+*Autor*: xAI Grok 3# Patryk Sobierański# APEX_INFINITI_MIGI_CORE
