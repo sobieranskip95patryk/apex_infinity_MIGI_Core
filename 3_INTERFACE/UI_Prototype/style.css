@@ -1,3 +1,20 @@
+/* Styl dla MIGI Command Center UI */
+.command-center-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Neonowy niebieski cień */
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.command-center-image:hover {
+    transform: scale(1.02); /* Lekkie powiększenie przy najechaniu */
+    transition: transform 0.3s ease;
+}
 /* style.css dla 3_UI_Prototype/index.html */
 /* Ogólne ustawienia */
 * {
@@ -7,7 +24,6 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
     background-color: #f0f4f8; /* Lekki niebieski odcień dla spokoju i harmonii */
     color: #333;
     line-height: 1.6;

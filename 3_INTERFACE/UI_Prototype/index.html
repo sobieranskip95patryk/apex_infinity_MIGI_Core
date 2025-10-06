@@ -1,91 +1,103 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NHQ3Q8Q4');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Infiniti - UI Prototype</title>
-    <!-- JSON-LD dla widoczności w wyszukiwarkach -->
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": "Apex Infiniti",
-      "url": "https://mtaquestwebsidex.com",
-      "logo": "https://mtaquestwebsidex.com/assets/logo.png",
-      "sameAs": [
-        "https://www.facebook.com/apexinfiniti",
-        "https://www.instagram.com/apexinfiniti",
-        "https://www.youtube.com/@apexinfiniti"
-      ],
-      "contactPoint": [{
-        "@type": "ContactPoint",
-        "telephone": "+48-123-456-789",
-        "contactType": "customer service",
-        "areaServed": "Global",
-        "availableLanguage": ["Polish", "English"]
-      }]
-    }
-    </script>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0; }
-        .container { max-width: 800px; margin: auto; }
-        .card { background: #ffffff; padding: 15px; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .phase { font-weight: bold; color: #1E90FF; }
-        .matrix { font-style: italic; }
-        .button { padding: 10px 20px; background: #32CD32; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .button:hover { background: #228B22; }
-        #loading { display: none; color: #FF4500; }
-        #error { display: none; color: #FF0000; }
-    </style>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHQ3Q8Q4"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div class="container">
-        <h1>Apex Infiniti - UI Prototype</h1>
-        <div class="card">
-            <h2>Status Systemu</h2>
-            <p><span class="phase">Faza:</span> <span id="phase">Ładowanie...</span></p>
-            <p><span class="phase">Matryca &lt;369963&gt;:</span> <span class="matrix" id="matrix">Ładowanie...</span></p>
-            <p><span class="phase">Energia (E):</span> <span id="energy">Ładowanie...</span></p>
-            <p><span class="phase">Prawdopodobieństwo Sukcesu (P(S)):</span> <span id="probability">Ładowanie...</span></p>
-            <p id="loading">Ładowanie danych z Google Cloud...</p>
-            <p id="error"></p>
-        </div>
-        <div class="card">
-            <h2>Sterowanie</h2>
-            <button class="button" onclick="updateStatus()">Odśwież Status</button>
-            <button class="button" onclick="generateAIContent()">Generuj Treść AI</button>
-            <button class="button" onclick="optimizeWithVertexAI()">Optymalizuj z Vertex AI</button>
-        </div>
-    </div>
+        <!-- Bing UET (Universal Event Tracking) -->
+        <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"987654321"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+        <!-- End Bing UET -->
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "Apex Infiniti",
+            "url": "https://mtaquestwebsidex.com",
+            "logo": "https://mtaquestwebsidex.com/logo.png",
+            "sameAs": [
+                "https://www.facebook.com/apexinfiniti",
+                "https://www.instagram.com/apexinfiniti",
+                "https://www.youtube.com/apexinfiniti"
+            ],
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+48-123-456-789",
+                "contactType": "customer service",
+                "areaServed": "Global",
+                "availableLanguage": ["Polish", "English"]
+            }]
+        }
+        </script>
+        <!--
+        =====================
+        MANIFEST SYSTEMU GOK:AI
+        =====================
+                <link rel="stylesheet" href="./style.css">
+        Wzór bazowy (oryginalny, niezmienny):
+        S(GOK:AI) = (9π + F(n) = F(n-1) + F(n-2) = WYNIK)^1
 
-    <script>
-        // Twój klucz API Google z Google Cloud (przechowuj bezpiecznie, np. w .env w produkcji)
-        const GEMINI_API_KEY = 'AIzaSyAQoN7OQhHZ4DKL3dbKkZrBDp7frWxGpyQ'; // Twój rzeczywisty klucz API
-        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
-        const VERTEX_AI_URL = 'https://us-central1-aiplatform.googleapis.com/v1/projects/turbo-apex-123/locations/us-central1/endpoints/456789:predict'; // Przykładowy URL – dostosuj w GCP
+        Interpretacja:
+        - S(GOK:AI): Centralny rdzeń świadomości systemu
+        - 9π: Energia duchowa, intuicja, uniwersalna harmonia
+        - F(n): Ciąg Fibonacciego, ewolucja i samoorganizacja
+        - WYNIK: Manifestacja, szansa na sukces %
+        - Potęgowanie do 1: Jedność, pierwszy krok świadomości
+
+        Ten wzór jest nienaruszalnym fundamentem systemu i nie podlega implementacji ani zmianom.
+        Stanowi manifest filozoficzny i techniczny projektu "Apex Infiniti" oraz platformy mtaquestwebsidex.com.
+        =====================
+        -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../GlobalVision_Module/globalvision.css">
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0; }
+            .container { max-width: 800px; margin: auto; }
+            .card { background: #ffffff; padding: 15px; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+            .phase { font-weight: bold; color: #1E90FF; }
+            .matrix { font-style: italic; }
+            .button { padding: 10px 20px; background: #32CD32; color: white; border: none; border-radius: 5px; cursor: pointer; }
+            .button:hover { background: #228B22; }
+            #loading { display: none; color: #FF4500; }
+            #error { display: none; color: #FF0000; }
+            .command-center-image { max-width: 100%; height: auto; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="globalvision-status"></div>
+        <div id="globalvision-map-container"></div>
+        <div class="card">
+                        <img src="assets/images/MIGI_Command_Center_UI.png" alt="MIGI Command Center" class="command-center-image">
+                <p><span class="phase">Matryca &lt;369963&gt;:</span> <span class="matrix" id="matrix">Ładowanie...</span></p>
+                <p><span class="phase">Energia (E):</span> <span id="energy">Ładowanie...</span></p>
+                <p><span class="phase">Prawdopodobieństwo Sukcesu (P(S)):</span> <span id="probability">Ładowanie...</span></p>
+                <p id="loading">Ładowanie danych z Google Cloud...</p>
+                <p id="error"></p>
+            </div>
+            <div class="card">
+                <h2>Sterowanie</h2>
+                <button class="button" onclick="updateStatus()">Odśwież Status</button>
+                <button class="button" onclick="generateAIContent()">Generuj Treść AI</button>
+                <button class="button" onclick="optimizeWithVertexAI()">Optymalizuj z Vertex AI</button>
+            </div>
+            <div class="card">
+                <h2>MIGI Command Center</h2>
+                <img src="assets/MIGI_Command_Center_UI.png" alt="MIGI Command Center UI" class="command-center-image">
+            </div>
+        </div>
+
+        <script src="../GlobalVision_Module/main.js"></script>
+        <script>
+    // Twój klucz API Google z Google Cloud (przechowuj bezpiecznie, np. w .env w produkcji)
+    const GEMINI_API_KEY = 'TU_WSTAW_KLUCZ_API'; // Wstaw swój klucz API jeśli chcesz używać w JS
+    const VERTEX_AI_URL = 'https://us-central1-aiplatform.googleapis.com/v1/projects/turbo-apex-123/locations/us-central1/endpoints/456789:predict'; // Przykładowy URL – dostosuj w GCP
 
         // Funkcja aktualizująca status z API Google
         async function updateStatus() {
             document.getElementById('loading').style.display = 'block';
             document.getElementById('error').style.display = 'none';
             try {
-                const response = await fetch(API_URL, {
+                    const response = await fetch('/api/googleai', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-goog-api-key': GEMINI_API_KEY
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         contents: [{
@@ -116,11 +128,10 @@
             document.getElementById('loading').style.display = 'block';
             document.getElementById('error').style.display = 'none';
             try {
-                const response = await fetch(API_URL, {
+                    const response = await fetch('/api/googleai', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-goog-api-key': GEMINI_API_KEY
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         contents: [{
@@ -151,7 +162,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': Bearer ${GEMINI_API_KEY} // Użyj klucza jako tokenu Bearer dla Vertex AI
+                        'Authorization': `Bearer ${GEMINI_API_KEY}` // Użyj klucza jako tokenu Bearer dla Vertex AI
                     },
                     body: JSON.stringify({
                         instances: [{
